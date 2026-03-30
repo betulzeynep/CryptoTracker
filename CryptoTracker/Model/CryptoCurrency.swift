@@ -7,23 +7,22 @@
 
 import Foundation
 
-// MARK: - MarketList
+// MARK: - CryptoCurrency
 struct CryptoCurrency: Codable {
     let id, symbol, name: String
     let image: String
-    let currentPrice, marketCap: Double
-    let fullyDilutedValuation: Double?
-    let marketCapRank, totalVolume: Int
+    let currentPrice: Double
+    let marketCap, marketCapRank, fullyDilutedValuation, totalVolume: Int
     let high24H, low24H, priceChange24H, priceChangePercentage24H: Double?
     let marketCapChange24H, marketCapChangePercentage24H: Double?
-    let circulatingSupply, totalSupply: Double?
-    let maxSupply: Int?
+    let circulatingSupply, totalSupply: Double
+    let maxSupply: Double?
     let ath, athChangePercentage: Double
-    let athDate: Date
+    let athDate: String
     let atl, atlChangePercentage: Double
-    let atlDate: Date
+    let atlDate: String
     let lastUpdated: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
         case currentPrice = "current_price"
