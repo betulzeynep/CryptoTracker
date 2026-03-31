@@ -48,3 +48,36 @@ struct CryptoCurrency: Codable {
         case lastUpdated = "last_updated"
     }
 }
+
+// MARK: - Sample Data
+#if DEBUG
+extension CryptoCurrency {
+    static let sample = CryptoCurrency(
+        id: "bitcoin",
+        symbol: "btc",
+        name: "Bitcoin",
+        image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png",
+        currentPrice: 65432.10,
+        marketCap: 1200000000000,
+        marketCapRank: 1,
+        fullyDilutedValuation: 1300000000000,
+        totalVolume: 25000000000,
+        high24H: 66000,
+        low24H: 64000,
+        priceChange24H: 1000,
+        priceChangePercentage24H: 2.5,
+        marketCapChange24H: 5000000000,
+        marketCapChangePercentage24H: 0.42,
+        circulatingSupply: 19500000,
+        totalSupply: 21000000,
+        maxSupply: 21000000,
+        ath: 69000,
+        athChangePercentage: -5.2,
+        athDate: "2021-11-10T14:24:11.849Z",
+        atl: 67.81,
+        atlChangePercentage: 96429.5,
+        atlDate: "2013-07-06T00:00:00.000Z",
+        lastUpdated: "2026-03-31T12:00:00.000Z"
+    )
+}
+#endif
