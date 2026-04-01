@@ -37,8 +37,12 @@ struct CryptoListView: View {
             }
         } else {
             List(viewModel.cryptos, id: \.id) { crypto in
-               // CryptoRow(crypto: crypto)
-                Text(crypto.name)
+                NavigationLink(value: crypto.id) {
+                    CryptoRow(crypto: crypto)
+                }
+            }
+            .navigationDestination(for: String.self) { coinId in
+                CoinDetailView(coinId: coinId)
             }
         }
     }
