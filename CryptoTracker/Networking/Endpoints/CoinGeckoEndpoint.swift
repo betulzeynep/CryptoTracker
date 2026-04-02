@@ -1,5 +1,5 @@
 //
-//  APIEndpoint.swift
+//  CoinGeckoEndpoint.swift
 //  CryptoTracker
 //
 //  Created by Zeynep Turnalı on 30.03.2026.

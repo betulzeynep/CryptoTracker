@@ -44,7 +44,7 @@ struct CryptoRow: View {
                 }
                 
                 // Second line: Price
-                Text(crypto.currentPrice.formatted(.currency(code: "USD")))
+                Text(crypto.formattedPrice)
                     .font(.body)
                     .fontWeight(.medium)
             }

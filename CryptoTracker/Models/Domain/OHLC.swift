@@ -9,6 +9,11 @@ import Foundation
 
 // MARK: - OHLC (Open, High, Low, Close)
 /// Represents candlestick data for charting
+/// 
+/// TODO: Integrate with Swift Charts
+/// - Add Identifiable conformance for chart data
+/// - Create ChartDataProvider extension for time series
+/// - Consider adding volume data for complete candlestick charts
 struct OHLC: Codable {
     let timestamp: TimeInterval  // Unix timestamp in milliseconds
     let open: Double
@@ -56,6 +61,12 @@ struct OHLC: Codable {
         self.low = low
         self.close = close
     }
+}
+
+// MARK: - Identifiable Conformance
+// TODO #12: This makes OHLC work seamlessly with Swift Charts
+extension OHLC: Identifiable {
+    var id: TimeInterval { timestamp }
 }
 
 // MARK: - Computed Properties
