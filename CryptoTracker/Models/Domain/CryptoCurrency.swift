@@ -49,47 +49,6 @@ struct CryptoCurrency: Codable {
     }
 }
 
-// MARK: - Presentation Logic
-extension CryptoCurrency {
-    /// Formatted price in USD currency format
-    /// Example: "$65,432.10"
-    var formattedPrice: String {
-        currentPrice.formatted(.currency(code: "USD"))
-    }
-    
-    /// Formatted market cap rank with # prefix
-    /// Example: "#1"
-    var formattedRank: String {
-        "\(Symbols.hash)\(marketCapRank)"
-    }
-    
-    /// Formatted price change percentage
-    /// Example: "2.50%" or "--" if nil
-    var formattedPriceChange: String {
-        guard let change = priceChangePercentage24H else {
-            return "--"
-        }
-        return String(format: "%.2f%%", abs(change))
-    }
-    
-    /// Symbol representing price direction (up or down arrow)
-    /// Returns: "↑" for positive, "↓" for negative, or "" if no change data
-    var priceChangeSymbol: String {
-        guard let change = priceChangePercentage24H else {
-            return ""
-        }
-        return change >= 0 ? Symbols.arrowUp : Symbols.arrowDown
-    }
-    
-    /// Indicates if price went up in the last 24 hours
-    var isPriceIncreasing: Bool {
-        guard let change = priceChangePercentage24H else {
-            return false
-        }
-        return change >= 0
-    }
-}
-
 // MARK: - Sample Data
 #if DEBUG
 extension CryptoCurrency {
