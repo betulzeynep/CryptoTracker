@@ -344,20 +344,6 @@ This project demonstrates knowledge of:
 
 This project is created for educational purposes.
 
-## 👤 Author
-
-**Zeynep Turnalı**
-
----
-
-## 📖 Additional Documentation
-
-- [TODO List](TODO.txt) - Full list of improvements and learning tasks
-- [TODO #1 Solution](TODO-1-SOLUTION.md) - Detailed walkthrough of formatting extraction
-- [Architecture Guide](ARCHITECTURE.md) - Deep dive into app architecture
-
----
-
 **Built with ❤️ using Swift and SwiftUI**
 
 *Last updated: April 2, 2026*
