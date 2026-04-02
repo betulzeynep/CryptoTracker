@@ -16,7 +16,7 @@ struct CoinDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: Spacing.large) {
                 // TODO: Add header section with coin image, name, current price
                 
                 // TODO #13: Add candlestick chart here
