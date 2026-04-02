@@ -5,7 +5,6 @@
 //  Created by Zeynep Turnalı on 31.03.2026.
 //
 import SwiftUI
-import Charts
 
 // TODO #11: Complete CoinDetailView implementation
 // See TODO.txt for detailed implementation guide
@@ -17,55 +16,27 @@ struct CoinDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Spacing.large) {
-                // TODO: Add header section with coin image, name, current price
-                
-                // TODO #13: Add candlestick chart here
-                // CandlestickChartView(data: viewModel.ohlcData ?? [])
-                
-                // TODO #14: Add time range selector
-                
-                // TODO #17: Add statistics grid
-                
-                // TODO: Add description/about section
+                // Show chart if data is available
+                if let ohlcData = viewModel.ohlcData, !ohlcData.isEmpty {
+                    CandlestickChartView(data: ohlcData)
+                } else if viewModel.isLoadingOHLC {
+                    ProgressView("Loading chart...")
+                        .frame(height: 300)
+                } else {
+                    Text("No chart data available")
+                        .frame(height: 300)
+                        .foregroundStyle(.secondary)
+                }
             }
             .padding()
         }
         .navigationTitle(coinId.capitalized)
         .task {
             await viewModel.fetchCoinDetail(id: coinId)
-            // TODO #16: await viewModel.fetchOHLCData(id: coinId, range: .week)
+            await viewModel.fetchOHLCData(id: coinId, days: 7)
         }
     }
 }
-
-// TODO #13: Create this component
-// struct CandlestickChartView: View {
-//     let data: [OHLC]
-//     
-//     var body: some View {
-//         Chart(data) { ohlc in
-//             // Candlestick body
-//             RectangleMark(
-//                 x: .value("Time", ohlc.date),
-//                 yStart: .value("Open", ohlc.open),
-//                 yEnd: .value("Close", ohlc.close)
-//             )
-//             .foregroundStyle(ohlc.isBullish ? .green : .red)
-//             
-//             // High-Low wick
-//             RuleMark(
-//                 x: .value("Time", ohlc.date),
-//                 yStart: .value("Low", ohlc.low),
-//                 yEnd: .value("High", ohlc.high)
-//             )
-//             .foregroundStyle(.gray)
-//         }
-//         .frame(height: 300)
-//         .chartYAxis {
-//             AxisMarks(position: .trailing)
-//         }
-//     }
-// }
 
 #Preview {
     NavigationStack {

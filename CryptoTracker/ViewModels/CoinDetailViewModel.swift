@@ -9,9 +9,15 @@ import Foundation
 
 @Observable
 class CoinDetailViewModel {
+    // Coin detail data
     var coinDetail: CoinDetail?
-    var isLoading = false
-    var errorMessage: String? = nil
+    // OHLC chart data
+    var ohlcData: [OHLC]?
+    // Loading states
+    var isLoadingDetail = false
+    var isLoadingOHLC = false
+    // Errors
+    var errorMessage: String?
     
     private let service: CryptoService
     
@@ -20,7 +26,7 @@ class CoinDetailViewModel {
     }
     
     func fetchCoinDetail(id: String) async {
-        isLoading = true
+        isLoadingDetail = true
         errorMessage = nil
         
         do {
@@ -30,6 +36,23 @@ class CoinDetailViewModel {
         } catch {
             errorMessage = "An unexpected error occurred"
         }
+        
+        isLoadingDetail = false
+    }
+    
+    func fetchOHLCData(id: String, days: Int = 7) async {
+        isLoadingOHLC = true
+        errorMessage = nil
+        
+        do {
+            ohlcData = try await service.fetchPriceHistory(id: id, days: days)
+        } catch let error as NetworkError {
+            errorMessage = error.errorDescription
+        } catch {
+            errorMessage = "An unexpected error occurred"
+        }
+        
+        isLoadingOHLC = false
     }
 }
 
