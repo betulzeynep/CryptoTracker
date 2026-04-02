@@ -60,7 +60,7 @@ extension CryptoCurrency {
     /// Formatted market cap rank with # prefix
     /// Example: "#1"
     var formattedRank: String {
-        "#\(marketCapRank)"
+        "\(Symbols.hash)\(marketCapRank)"
     }
     
     /// Formatted price change percentage
@@ -78,7 +78,7 @@ extension CryptoCurrency {
         guard let change = priceChangePercentage24H else {
             return ""
         }
-        return change >= 0 ? "↑" : "↓"
+        return change >= 0 ? Symbols.arrowUp : Symbols.arrowDown
     }
     
     /// Indicates if price went up in the last 24 hours
